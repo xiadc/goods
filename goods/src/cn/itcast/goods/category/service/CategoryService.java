@@ -42,4 +42,50 @@ public class CategoryService {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	/**修改一级分类
+	 * @param category
+	 */
+	public void update(Category category){
+		try {
+			categoryDao.update(category);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	/**按cid查找分类
+	 * @param cid
+	 * @return
+	 */
+	public Category findByCid(String cid){
+		try {
+			return categoryDao.findByCid(cid);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	/**按cid删除分类
+	 * @param cid
+	 */
+	public void deleteByCid(String cid){
+		try {
+			categoryDao.deleteByCid(cid);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	/**按pid查找分类
+	 * @param pid
+	 * @return
+	 */
+	public List<Category> findByParent(String pid){
+		try {
+		 return	categoryDao.findByParent(pid);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
