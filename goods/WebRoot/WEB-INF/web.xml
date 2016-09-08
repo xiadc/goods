@@ -40,6 +40,11 @@
     <servlet-name>AdminCategoryServlet</servlet-name>
     <servlet-class>cn.itcast.goods.admin.category.AdminCategoryServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AdminBookServlet</servlet-name>
+    <servlet-class>cn.itcast.goods.admin.book.web.servlet.AdminBookServlet</servlet-class>
+  </servlet>
+
 
 
   <servlet-mapping>
@@ -73,5 +78,9 @@
   <servlet-mapping>
     <servlet-name>AdminCategoryServlet</servlet-name>
     <url-pattern>/admin/AdminCategoryServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminBookServlet</servlet-name>
+    <url-pattern>/admin/AdminBookServlet</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -60,3 +60,24 @@ function delForm() {
 	$("#form").append(method);
 	$("#form").submit();
 }
+
+/*
+ * 更改一级分类时需要重新加载二级分类
+ */
+function loadChildren(){
+	var pid = $("#pid");//获取当前一级分类id
+	$.ajax({
+		url:"/goods/admin/AdminBookServlet",
+		data:{method:"loadChild",pid:pid},
+		type:"POST",
+		dateType:"json",
+		async:false,
+		cache:false,
+		success:function(result){
+			
+		}
+	});
+		
+	}
+	
+}
