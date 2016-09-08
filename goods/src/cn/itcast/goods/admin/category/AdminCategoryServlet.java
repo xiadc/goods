@@ -22,7 +22,7 @@ public class AdminCategoryServlet extends BaseServlet {
 	private CategoryService categoryService = new CategoryService();
 	private BookService bookService = new BookService();
 	
-	/**查询所有分类gitTest
+	/**查询所有分类gitTest111
 	 * @param req
 	 * @param resp
 	 * @return
