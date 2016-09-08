@@ -19,7 +19,6 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/adminjsps/admin/css/book/list.css'/>">
 <script type="text/javascript" src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value='/jsps/pager/pager.css'/>" />
-<script type="text/javascript" src="<c:url value='/jsps/pager/pager.js'/>"></script>
 
 <script type="text/javascript" src="<c:url value='/adminjsps/admin/js/book/list.js'/>"></script>
   </head>

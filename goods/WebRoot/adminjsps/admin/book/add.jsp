@@ -63,6 +63,32 @@ $(function () {
 	});
 });
 
+/*
+ * 更改一级分类时需要重新加载二级分类
+ */
+function loadChildren(){
+	var pid = $("#pid").val();//获取当前一级分类id
+	$.ajax({
+		url:"/goods/admin/AdminBookServlet",
+		data:{method:"loadChild",pid:pid},
+		type:"POST",
+		dataType:"json",
+		async:false,
+		cache:false,
+		success:function(arr){
+			$("#cid").empty();
+			$("#cid").append("<option>====请选择二级分类====</option>");
+			for(var i = 0; i<arr.length; i++){
+				//$("#cid").append($("<option>").val(arr[i].cid).text(arr[i].cname));
+				var option = $("<option>").val(arr[i].cid).text(arr[i].cname);
+				$("#cid").append(option);
+			}
+		}
+	});
+		
+	}
+
+
 </script>
   </head>
   
@@ -108,18 +134,14 @@ $(function () {
 				<td>
 					一级分类：<select name="pid" id="pid" onchange="loadChildren()">
 						<option value="">==请选择1级分类==</option>
-			    		<option value="1" selected='selected'>程序设计</option>
-			    		<option value="2">办公室用书</option>
-			    		<option value="3">图形 图像 多媒体</option>
-			    		<option value="4">操作系统/系统开发</option>
+						<c:forEach items="${parents }" var="parent">
+			    		<option value="${parent.cid }">${parent.cname }</option>
+			    		</c:forEach>
 					</select>
 				</td>
 				<td>
 					二级分类：<select name="cid" id="cid">
-						<option value="">==请选择2级分类==</option>
-			    		<option value="1" selected='selected'>Java Javascript</option>
-			    		<option value="2">JSP</option>
-			    		<option value="3">C C++ VC VC++</option>
+						<option value="">==请选择2级分类==</option>		 
 					</select>
 				</td>
 				<td></td>

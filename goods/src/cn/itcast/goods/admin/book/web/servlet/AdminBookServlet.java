@@ -219,12 +219,45 @@ public class AdminBookServlet extends BaseServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public String edit(HttpServletRequest req, HttpServletResponse resp)
+	public String loadChild(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String pid =req.getParameter("pid");
 		List<Category> childList = categoryService.findByParent(pid);
 		
+		//将list转换成json数组
+		String json = toJson(childList);
+		resp.getWriter().print(json);
+		return null;
+		
 	}
-
 	
+	//{"cid":"cid","cname","cname"}
+	private String toJson(Category category){
+		StringBuilder sb = new StringBuilder("{");
+		sb.append("\"cid\"").append(":").append("\"").append(category.getCid()).append("\"");
+		sb.append(",");
+		sb.append("\"cname\"").append(":").append("\"").append(category.getCname()).append("\"");
+		sb.append("}");
+		return sb.toString();
+	}
+//[{"":"","":""},{}]
+	private String toJson(List<Category> list){
+		StringBuilder sb = new StringBuilder("[");
+		for (int i = 0; i < list.size(); i++) {
+			sb.append(toJson(list.get(i)));
+			if(i<list.size()-1){
+				sb.append(",");
+			}
+		}
+		sb.append("]");
+		return sb.toString();
+	}
+	
+	
+	public String addPre(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+			req.setAttribute("parents",categoryService.findParents());
+			return "f:/adminjsps/admin/book/add.jsp";
+		
+	}
 }

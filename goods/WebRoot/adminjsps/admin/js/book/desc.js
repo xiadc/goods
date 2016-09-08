@@ -65,19 +65,23 @@ function delForm() {
  * 更改一级分类时需要重新加载二级分类
  */
 function loadChildren(){
-	var pid = $("#pid");//获取当前一级分类id
+	var pid = $("#pid").val();//获取当前一级分类id
 	$.ajax({
 		url:"/goods/admin/AdminBookServlet",
 		data:{method:"loadChild",pid:pid},
 		type:"POST",
-		dateType:"json",
+		dataType:"json",
 		async:false,
 		cache:false,
-		success:function(result){
-			
+		success:function(arr){
+			$("#cid").empty();
+			$("#cid").append("<option>====请选择二级分类====</option>");
+			for(var i = 0; i<arr.length; i++){
+				//$("#cid").append($("<option>").val(arr[i].cid).text(arr[i].cname));
+				var option = $("<option>").val(arr[i].cid).text(arr[i].cname);
+				$("#cid").append(option);
+			}
 		}
 	});
 		
 	}
-	
-}
