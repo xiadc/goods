@@ -91,10 +91,10 @@ $(function() {
   
   <div id='formDiv'>
    <div class="sm">&nbsp;</div>
-   <form action="javascript:alert('编辑或删除图书成功！')" method="post" id="form">
-   	<input type="hidden" name="bid" value=""/>
-   	<input type="hidden" name="image_w" value=""/>
-   	<input type="hidden" name="image_b" value=""/>
+   <form action="<c:url value='/admin/AdminBookServlet'/>" method="post" id="form">
+   	<input type="hidden" name="bid" value="${book.bid }"/>
+   	<input type="hidden" name="image_w" value="${book.image_w }"/>
+   	<input type="hidden" name="image_b" value="${book.image_b }"/>
     <img align="top" src="<c:url value='/${book.image_w }'/>" class="tp"/>
     <div style="float:left;">
 	    <ul>

@@ -56,6 +56,7 @@ function editForm() {
 }
 
 function delForm() {
+	if(!confirm("你确定删除该图书吗？")) return;
 	var method = $("<input>").attr("type", "hidden").attr("name", "method").attr("value", "delete");
 	$("#form").append(method);
 	$("#form").submit();

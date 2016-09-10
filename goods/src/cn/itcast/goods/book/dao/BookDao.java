@@ -144,4 +144,44 @@ public class BookDao {
 		 
 		 return pb;
 	}
+	
+	
+	/**添加图书
+	 * @param book
+	 * @throws SQLException
+	 */
+	public void add(Book book) throws SQLException{
+		String sql = "insert into t_book(bid,bname,author,price,currPrice," +
+				"discount,press,publishtime,edition,pageNum,wordNum,printtime," +
+				"booksize,paper,cid,image_w,image_b)" +
+				"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		
+		Object[] params ={book.getBid(),book.getBname(),book.getAuthor(),book.getPrice(),book.getCurrPrice(),
+					book.getDiscount(),book.getPress(),book.getPublishtime(),book.getEdition(),book.getPageNum(),book.getWordNum(),book.getPrinttime(),
+					book.getBooksize(),book.getPaper(),book.getCategory().getCid(),book.getImage_w(),book.getImage_b()};
+		qr.update(sql, params);
+	}
+	
+	/**修改图书
+	 * @param book
+	 * @throws SQLException 
+	 */
+	public void updateBook(Book book) throws SQLException{
+		String sql ="update t_book set bname=?,author=?,price=?,currPrice=?,discount=?,press=?,publishtime=?,edition=?,pageNum=?," +
+				"wordNum=?,printtime=?,booksize=?,paper=?,cid=? where bid = ?";
+		Object[] params = {book.getBname(),book.getAuthor(),book.getPrice(),book.getCurrPrice(),
+				book.getDiscount(),book.getPress(),book.getPublishtime(),book.getEdition(),book.getPageNum(),book.getWordNum(),book.getPrinttime(),
+				book.getBooksize(),book.getPaper(),book.getCategory().getCid(),book.getBid()};
+		qr.update(sql, params);
+	}
+	
+	/**删除图书
+	 * @param bid
+	 * @throws SQLException 
+	 */
+	public void delete(String bid) throws SQLException{
+		String sql = "delete from t_book where bid = ?";
+		qr.update(sql, bid);
+	}
+	
 }

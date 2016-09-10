@@ -2,6 +2,7 @@ package cn.itcast.goods.admin.book.web.servlet;
 
 
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -254,10 +255,63 @@ public class AdminBookServlet extends BaseServlet {
 	}
 	
 	
+	/**添加图书准备工作
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public String addPre(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 			req.setAttribute("parents",categoryService.findParents());
 			return "f:/adminjsps/admin/book/add.jsp";
 		
 	}
+	
+	/**编辑图书
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String edit(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+			Book book = CommonUtils.toBean(req.getParameterMap(), Book.class);
+			Category category = new Category();
+			category.setCid(req.getParameter("cid"));
+			book.setCategory(category);
+			
+			bookService.edit(book);
+			req.setAttribute("msg", "修改图书成功！");
+			return "f:/adminjsps/msg.jsp";		
+	}
+	
+	/**删除图书
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String delete(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+			Book book = CommonUtils.toBean(req.getParameterMap(), Book.class);
+			bookService.delete(book);
+			
+			//删除图片
+			String smallPath = this.getServletContext().getRealPath("/book_img")+"\\"+book.getImage_b();
+			String bigPath = this.getServletContext().getRealPath("/book_img")+"\\"+book.getImage_w();
+			File distSmallFile = new File(smallPath);
+			File distBigFile = new File(bigPath);
+			
+			distSmallFile.delete();
+			distBigFile.delete();
+			
+			
+			req.setAttribute("msg", "删除图书成功！");
+			return "f:/adminjsps/msg.jsp";		
+	}
+	
 }

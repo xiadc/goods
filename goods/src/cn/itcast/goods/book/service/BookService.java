@@ -1,5 +1,6 @@
 package cn.itcast.goods.book.service;
 
+import java.io.File;
 import java.sql.SQLException;
 
 import cn.itcast.goods.book.dao.BookDao;
@@ -88,4 +89,44 @@ public class BookService {
 		}
 	}
 	
+	
+	/**添加图书
+	 * @param book
+	 */
+	public void add(Book book){
+		try {
+			bookDao.add(book);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+	
+	/**添加图书
+	 * @param book
+	 */
+	public void edit(Book book){
+		try {
+			bookDao.updateBook(book);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+	
+	
+	/**删除图书
+	 * @param book
+	 */
+	public void delete(Book book){
+		try {
+			//删除图书
+			bookDao.delete(book.getBid());
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
 }
