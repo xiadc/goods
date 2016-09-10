@@ -37,7 +37,7 @@ public class LoginFilter implements Filter {
 		if(user == null){
 			req.setAttribute("code", "error");
 			req.setAttribute("msg", "请您先登录！");
-			req.getRequestDispatcher("/jsps/msg.jsp").forward(req, response);
+			req.getRequestDispatcher("/jsps/msg.jsp").forward(request, response);
 		}else{
 			chain.doFilter(request, response);
 		}

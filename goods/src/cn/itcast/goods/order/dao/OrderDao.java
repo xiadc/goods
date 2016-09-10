@@ -175,4 +175,24 @@ public class OrderDao {
 		return findByCriteria(exprList, 1);//按id查询结果只有一个，所以分页没有意义，这里直接给1，返回的结果实际只有一个Order对象
 	}
 	
+	/**查询所有订单
+	 * @param pc
+	 * @return
+	 * @throws SQLException
+	 */
+	public PageBean<Order> findAll(int pc) throws SQLException{
+		List<Expression> exprList = new ArrayList<Expression>();
+		return findByCriteria(exprList, pc);
+	}
+	
+	/**按状态查询订单
+	 * @param pc
+	 * @return
+	 * @throws SQLException
+	 */
+	public PageBean<Order> findByStatus(int status,int pc) throws SQLException{
+		List<Expression> exprList = new ArrayList<Expression>();
+		exprList.add(new Expression("status", "=", status+""));
+		return findByCriteria(exprList, pc);
+	}
 }

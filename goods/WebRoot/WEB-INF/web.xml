@@ -48,10 +48,10 @@
     <servlet-name>AdminAddBookServlet</servlet-name>
     <servlet-class>cn.itcast.goods.admin.book.web.servlet.AdminAddBookServlet</servlet-class>
   </servlet>
-
-
-
-
+  <servlet>
+    <servlet-name>AdminOrderServlet</servlet-name>
+    <servlet-class>cn.itcast.goods.admin.order.web.servlet.AdminOrderServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>VerifyCodeServlet</servlet-name>
     <url-pattern>/VerifyCodeServlet</url-pattern>
@@ -91,5 +91,9 @@
   <servlet-mapping>
     <servlet-name>AdminAddBookServlet</servlet-name>
     <url-pattern>/admin/AdminAddBookServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminOrderServlet</servlet-name>
+    <url-pattern>/admin/AdminOrderServlet</url-pattern>
   </servlet-mapping>
 </web-app>

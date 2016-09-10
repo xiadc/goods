@@ -301,8 +301,8 @@ public class AdminBookServlet extends BaseServlet {
 			bookService.delete(book);
 			
 			//删除图片
-			String smallPath = this.getServletContext().getRealPath("/book_img")+"\\"+book.getImage_b();
-			String bigPath = this.getServletContext().getRealPath("/book_img")+"\\"+book.getImage_w();
+			String smallPath = this.getServletContext().getRealPath("/")+"\\"+book.getImage_b();
+			String bigPath = this.getServletContext().getRealPath("/")+"\\"+book.getImage_w();
 			File distSmallFile = new File(smallPath);
 			File distBigFile = new File(bigPath);
 			
